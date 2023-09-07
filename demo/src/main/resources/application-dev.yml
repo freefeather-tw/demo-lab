@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: demo
+  datasource:
+    url: 'jdbc:h2:mem:demo'
+    username: 'sa'
+    password: 'featherApril05'
+    driver-class-name: org.h2.Driver
+  hikari:
+    pool-name: HikariCP
+    minimum-idle: 1
+    maximum-pool-size: 5
+    idle-timeout: 30000  # 连接在空闲时间后关闭，以确保连接不会保持打开状态
+    max-lifetime: 1800000  # 连接的最大寿命
+    connection-timeout: 30000  # 获取连接的超时时间
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sleuth:
+    sampler:
+      probability: 1.0
+  #zipkin:
+  #  base-url: http://localhost:9411
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: ERROR
+    org.springframework: ERROR
+    com.example: DEBUG
+
+graphql:
+  graphiql:
+    enabled: true
+  servlet:
+    enabled: true
+    cors-enabled: true
+    exception-handlers-enabled: true
+  playground:
+    enabled: false
+  voyager:
+    enabled: true
+
+cors:
+  allowed:
+    origin: "http://localhost:4200"

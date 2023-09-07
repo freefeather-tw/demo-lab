@@ -1,0 +1,32 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    networks:
+      - test-network
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql
+    restart: always
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=featherApril05
+      - POSTGRES_DB=demo
+  adminer:
+    image: adminer
+    container_name: adminer
+    networks:
+      - test-network
+    ports:
+      - 8181:8080
+    restart: always
+    depends_on:
+      - postgres
+networks:
+  test-network:
+    external: true
+volumes:
+  db-data:
+    external: true

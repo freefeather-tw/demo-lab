@@ -1,0 +1,13 @@
+version: "3"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - test-network
+    restart: always
+networks:
+  test-network:
+    external: true

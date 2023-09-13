@@ -1,0 +1,70 @@
+version: "3"
+networks:
+  test-network:
+    external: true
+
+volumes:
+  certs:
+    external: true
+
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.9.0
+    container_name: filebeat
+    user: "0"
+    volumes:
+      - certs:/usr/share/filebeat/certs
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./logs/:/usr/share/filebeat/ingest_data/
+    environment:
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=featherApril05
+      - ELASTIC_HOSTS=https://elasticsearch:9200
+    networks:
+      - test-network
+    restart: always
+    
+  demo:
+    depends_on:
+      - filebeat
+    image: demo
+    container_name: demo
+    ports:
+      - 8080:8080
+    networks:
+      - test-network
+    volumes:
+      - ./logs:/opt/logs
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "tail -n1 /opt/logs/demo.log | grep 'Started DemoApplication'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  demo2:
+    depends_on:
+      demo:
+        condition: service_healthy
+    image: demo2
+    container_name: demo2
+    networks:
+      - test-network
+    volumes:
+      - ./logs:/opt/logs
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "tail -n1 /opt/logs/demo2.log | grep 'Started Demo2Application'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+  
+    

@@ -32,7 +32,7 @@ spring:
     sampler:
       probability: 1.0
   zipkin:
-    base-url: http://centos:9411
+    base-url: http://zipkin:9411
   sql:
     init:
       mode: always
@@ -42,6 +42,10 @@ logging:
     root: ERROR
     org.springframework: ERROR
     com.example: DEBUG
+  file:
+    name: '/opt/logs/demo.log'
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Taipei
 
 graphql:
   graphiql:

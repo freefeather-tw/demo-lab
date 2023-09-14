@@ -1,13 +1,44 @@
 version: "3"
 services:
+  mysql:
+    image: openzipkin/zipkin-mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - test-network
   zipkin:
+    depends_on:
+      - mysql
     image: openzipkin/zipkin
     container_name: zipkin
+    user: root
     ports:
-      - "9411:9411"
+      - 9411:9411
     networks:
       - test-network
     restart: always
+    volumes:
+      - certs:/zipkin/certs
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:9411 | grep -q '200'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
 networks:
   test-network:
+    external: true
+
+volumes:
+  certs:
     external: true

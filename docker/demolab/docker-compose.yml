@@ -52,6 +52,8 @@ services:
         condition: service_healthy
     image: demo2
     container_name: demo2
+    ports:
+      - 8282:8282
     networks:
       - test-network
     volumes:

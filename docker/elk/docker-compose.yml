@@ -12,6 +12,8 @@ volumes:
     driver: local
   logstash-data:
     driver: local
+  logstash-ingest-data:
+    driver: local
 
 services:
   setup:
@@ -153,11 +155,12 @@ services:
       - test-network
     volumes:
       - certs:/usr/share/logstash/certs
-      - "./logstash_ingest_data/:/usr/share/logstash/ingest_data/"
-      - "./logstash.conf:/usr/share/logstash/pipeline/logstash.conf"
+      - logstash-data:/usr/share/logstash/data
+      - logstash-ingest-data/:/usr/share/logstash/ingest_data/
+      - "./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro"
     environment:
-        - xpack.monitoring.enabled=false
-        - ELASTIC_USER=elastic
-        - ELASTIC_PASSWORD=featherApril05
-        - ELASTIC_HOSTS=https://elasticsearch:9200
+      - xpack.monitoring.enabled=false
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=featherApril05
+      - ELASTIC_HOSTS=https://elasticsearch:9200
     restart: always

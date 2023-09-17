@@ -1,11 +1,11 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
 
 spring:
   application:
     name: demo
   datasource:
-    url: 'jdbc:postgresql://postgres:5432/demo'
+    url: 'jdbc:postgresql://192.168.56.101:5432/demo'
     username: 'sa'
     password: 'featherApril05'
     driver-class-name: org.postgresql.Driver
@@ -16,6 +16,7 @@ spring:
     idle-timeout: 30000  # 连接在空闲时间后关闭，以确保连接不会保持打开状态
     max-lifetime: 1800000  # 连接的最大寿命
     connection-timeout: 30000  # 获取连接的超时时间
+    initialization-fail-timeout: 120000  # 如果连接初始化失败，应用程序是否应该失败启动
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: true
@@ -31,8 +32,8 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
-  zipkin:
-    base-url: http://zipkin:9411
+  #zipkin:
+  #  base-url: http://zipkin:9411
   sql:
     init:
       mode: never

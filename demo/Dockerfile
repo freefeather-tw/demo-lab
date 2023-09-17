@@ -1,6 +1,6 @@
 FROM openjdk:11-ea-jre
 
-EXPOSE 8080
+#EXPOSE 8080
 
 RUN mkdir /opt/app
 RUN mkdir /opt/logs

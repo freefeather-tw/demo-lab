@@ -1,0 +1,13 @@
+2023-09-12 15:22:33.397  INFO [demo2,,] 15084 --- [main] com.example.demo2.Demo2Application       : Starting Demo2Application using Java 11.0.20 on NB0222 with PID 15084 (C:\01_work\git_work\demo-lab\demo2\target\classes started by jack.yang in C:\01_work\git_work\demo-lab)
+2023-09-12 15:22:33.403 DEBUG [demo2,,] 15084 --- [main] com.example.demo2.Demo2Application       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 15:22:33.405  INFO [demo2,,] 15084 --- [main] com.example.demo2.Demo2Application       : The following 1 profile is active: "dev"
+2023-09-12 15:22:42.555  INFO [demo2,,] 15084 --- [main] com.example.demo2.Demo2Application       : Started Demo2Application in 10.636 seconds (JVM running for 11.237)
+2023-09-12 15:23:51.021 DEBUG [demo2,ea89a0e0cfce4038,4876714cdb07dcab] 15084 --- [http-nio-8282-exec-2] c.e.demo2.controller.HelloController     : receive demo's call
+2023-09-12 16:00:24.913  INFO [demo2,,] 17736 --- [main] com.example.demo2.Demo2Application       : Starting Demo2Application using Java 11.0.20 on NB0222 with PID 17736 (C:\01_work\git_work\demo-lab\demo2\target\classes started by jack.yang in C:\01_work\git_work\demo-lab\demo2)
+2023-09-12 16:00:24.916 DEBUG [demo2,,] 17736 --- [main] com.example.demo2.Demo2Application       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 16:00:24.917  INFO [demo2,,] 17736 --- [main] com.example.demo2.Demo2Application       : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 16:00:28.754  INFO [demo2,,] 17736 --- [main] com.example.demo2.Demo2Application       : Started Demo2Application in 4.728 seconds (JVM running for 5.157)
+2023-09-12 16:29:52.919  INFO [demo2,,] 12508 --- [main] com.example.demo2.Demo2Application       : Starting Demo2Application using Java 11.0.20 on NB0222 with PID 12508 (C:\01_work\git_work\demo-lab\demo2\target\classes started by jack.yang in C:\01_work\git_work\demo-lab\demo2)
+2023-09-12 16:29:52.921 DEBUG [demo2,,] 12508 --- [main] com.example.demo2.Demo2Application       : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 16:29:52.922  INFO [demo2,,] 12508 --- [main] com.example.demo2.Demo2Application       : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 16:29:56.094  INFO [demo2,,] 12508 --- [main] com.example.demo2.Demo2Application       : Started Demo2Application in 3.885 seconds (JVM running for 4.297)

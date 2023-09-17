@@ -26,15 +26,7 @@ services:
       - MYSQL_HOST=mysql
       - MYSQL_USER=zipkin
       - MYSQL_PASS=zipkin
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -s -I http://localhost:9411 | grep -q '200'",
-        ]
-      interval: 10s
-      timeout: 10s
-      retries: 120
+
 networks:
   test-network:
     external: true

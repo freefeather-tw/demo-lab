@@ -13,6 +13,8 @@
     <modules>
         <module>demo</module>
         <module>demo2</module>
+        <module>discovery</module>
+        <module>gateway</module>
     </modules>
     <build>
         <pluginManagement>

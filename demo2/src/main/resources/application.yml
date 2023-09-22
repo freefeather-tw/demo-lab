@@ -1,5 +1,5 @@
-#server:
-#    port: 8282
+server:
+  port: 8282
 
 spring:
   application:
@@ -9,6 +9,12 @@ spring:
       probability: 1.0
   #zipkin:
   #  base-url: http://zipkin:9411
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+    fetch-registry: true
 
 logging:
   level:
@@ -23,3 +29,18 @@ logging:
 cors:
   allowed:
     origin: "http://demo:8080"
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,conditions
+
+#info:
+#  app:
+#    name: demo2
+#    description: demo2
+#    version: 1.0.0

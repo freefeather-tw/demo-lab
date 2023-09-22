@@ -2,16 +2,58 @@ version: "3"
 networks:
   test-network:
     driver: overlay
+    attachable: true
+    driver_opts:
+      com.docker.network.driver.mtu: "1400"
+
 
 volumes:
   logs:
     driver: local
 
 services:
-  demo2:
-    image: demo2
+  nginx:
+    image: nginx
+    networks:
+      - test-network
+    ports:
+      - 80:80
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: 1G
+        reservations:
+          cpus: '0.20'
+          memory: 100M
+      placement:
+        constraints:
+          - node.role == worker
+  demo:
+    image: 192.168.100.200:5000/demo
+    networks:
+      - test-network
     ports:
       - 8080:8080
+    volumes:
+      - logs:/opt/logs
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.30"
+          memory: 1G
+        reservations:
+          cpus: '0.20'
+          memory: 100M
+      placement:
+        constraints:
+          - node.role == worker
+  demo2:
+    image: 192.168.100.200:5000/demo2
+    networks:
+      - test-network
     volumes:
       - logs:/opt/logs
     deploy:
